@@ -371,7 +371,7 @@ then
     echo "[CONN] `date -d today +%F_%T` ${PEERNAME}: Current usage $CURRENT_USAGE M is within the quota unlimited. Connected" >> $LOG_FILE
     exit 0
 fi
-if [ `expr $CURRENT_USAGE \< $QUOTA` -eq 1 ]
+if [ `echo "$CURRENT_USAGE < $QUOTA" | bc` -eq 1 ]
 then
     echo "[CONN] `date -d today +%F_%T` ${PEERNAME}: Current Usage $CURRENT_USAGE M is within the quota $QUOTA M. Connected" >> $LOG_FILE
 else
