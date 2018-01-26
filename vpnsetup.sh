@@ -6,6 +6,9 @@
 # DO NOT RUN THIS SCRIPT ON YOUR PC OR MAC!
 #
 # The latest version of this script is available at:
+# https://github.com/aha-lin/setup-ipsec-vpn
+#
+# This script is developed base on hwdsl2's work at:
 # https://github.com/hwdsl2/setup-ipsec-vpn
 #
 # Copyright (C) 2014-2016 Lin Song <linsongui@gmail.com>
