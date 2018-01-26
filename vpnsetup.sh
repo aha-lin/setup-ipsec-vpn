@@ -365,7 +365,9 @@ VPNQUOTA_FILE=/etc/ppp/quota
 LOG_FILE=/var/log/vpn.log
 # Check quota
 QUOTA=`awk '$1=="'${PEERNAME}'" {print $2}' $VPNQUOTA_FILE`
-CURRENT_USAGE=`awk -F, '$2~/'${PEERNAME}'/ { sum = sum + $3 } END { printf ("%.2f", sum/1024/1024)}' $VPNUSAGE_FILE`
+CURR_MONTH=`date -d today +%Y-%m`
+CURRENT_USAGE=`awk -F, '$2~/'${PEERNAME}'/ && $1~/'${CURR_MONTH}'/ { sum = sum + $3 } END { printf ("%.2f", sum/1024/1024)}' $VPNUSAGE_FILE`
+
 if [ "$QUOTA"x = "*x" ]
 then
     echo "[CONN] `date -d today +%F_%T` ${PEERNAME}: Current usage $CURRENT_USAGE M is within the quota unlimited. Connected" >> $LOG_FILE
