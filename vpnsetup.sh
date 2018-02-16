@@ -495,6 +495,27 @@ service fail2ban restart 2>/dev/null
 service ipsec restart 2>/dev/null
 service xl2tpd restart 2>/dev/null
 
+
+print_status "Adding lsquota tool..."
+
+mkdir -p ~/bin
+cat > ~/bin/lsquota <<'EOF'
+#!/bin/sh
+VPNUSAGE_FILE=/var/log/vpnusage.log
+VPNQUOTA_FILE=/etc/ppp/quota
+LOG_FILE=/var/log/vpn.log
+# Check quota
+#QUOTA=`awk '$1=="'${PEERNAME}'" {print $2}' $VPNQUOTA_FILE`
+if [ -z $1 ]
+then
+	SEARCH_MONTH=`date -d today +%Y-%m`
+else
+	SEARCH_MONTH=$1
+fi
+sudo awk -F, '$1~/'${SEARCH_MONTH}'/ { quota_list[$2] = quota_list[$2] + $3 } END { for (quota in quota_list) printf ("%10s%10.2f M\n", quota, quota_list[quota]/1024/1024)}' $VPNUSAGE_FILE
+EOF
+chmod +x ~/bin/lsquota
+
 cat <<EOF
 
 ================================================
