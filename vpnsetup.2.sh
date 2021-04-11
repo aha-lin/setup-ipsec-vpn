@@ -134,7 +134,7 @@ apt-get -yq update || exiterr "'apt-get update' failed."
 print_status "Installing packages required for setup..."
 
 apt-get -yq install wget dnsutils openssl || exiterr2
-apt-get -yq install iproute gawk grep sed net-tools || exiterr2
+apt-get -yq install iproute2 gawk grep sed net-tools || exiterr2
 apt-get -yq install bc || exiterr2
 
 print_status "Trying to auto discover IPs of this server..."
