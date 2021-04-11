@@ -176,7 +176,7 @@ apt-get -yq install fail2ban || exiterr2
 
 print_status "Compiling and installing Libreswan..."
 
-swan_ver=3.18
+swan_ver=3.29
 swan_file="libreswan-$swan_ver.tar.gz"
 swan_url1="https://download.libreswan.org/$swan_file"
 swan_url2="https://github.com/libreswan/libreswan/archive/v$swan_ver.tar.gz"
