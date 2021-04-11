@@ -67,6 +67,8 @@ if [ "$(id -u)" != 0 ]; then
   exiterr "Script must be run as root. Try 'sudo sh $0'"
 fi
 
+VPN_IFACE="$(route | grep '^default' | grep -o '[^ ]*$')"
+
 NET_IF0=${VPN_IFACE:-'eth0'}
 NET_IFS=${VPN_IFACE:-'eth+'}
 
